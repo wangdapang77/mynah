@@ -1,6 +1,5 @@
-package com.sedion.mynawang.wechat.wefun;
+package com.sedion.mynawang.wechat.wefunc;
 
-import com.blade.kit.DateKit;
 import com.sedion.mynawang.common.http.HttpKit;
 import com.sedion.mynawang.common.util.StringUtil;
 import com.sedion.mynawang.wechat.Constant.BaseCons;
@@ -19,19 +18,14 @@ import org.slf4j.LoggerFactory;
  */
 public class UUIDServer {
 
-    public UUIDServer() {
-        /*System.setProperty("https.protocols", "TLSv1");*/
-        System.setProperty("jsse.enableSNIExtension", "false");
-    }
-
     private static final Logger _log = LoggerFactory.getLogger(UUIDServer.class);
 
-    public String getUUID2() {
+    public String getUUID() {
         UuidParams uuidParams = new UuidParams();
         uuidParams.setAppid("wx782c26e4c19acffb");
         uuidParams.setFun("new");
         uuidParams.setLang("zh_CN");
-        uuidParams.setTimestamp_(DateKit.getCurrentUnixTime());
+        uuidParams.setTimestamp_(System.currentTimeMillis());
         String loginUuid = HttpKit.httpRequestToStr(WechatUrlCons.getWechatJsLoginUrl() + uuidParams.toUrlParam(), "GET", null);
         if (!StringUtil.isEmpty(loginUuid)) {
             String loginCode = Matchers.match("window.QRLogin.code = (\\d+);", loginUuid);
@@ -46,7 +40,7 @@ public class UUIDServer {
 
     public static void main(String[] args) {
         UUIDServer uuidServer = new UUIDServer();
-        System.out.println(uuidServer.getUUID2());
+        System.out.println(uuidServer.getUUID());
     }
 
 

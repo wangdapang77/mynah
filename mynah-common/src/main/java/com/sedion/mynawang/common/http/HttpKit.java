@@ -56,6 +56,7 @@ public class HttpKit {
             SSLContext sslContext = SSLContext.getInstance("SSL", "SunJSSE");
             //初始化SSLContext
             sslContext.init(null, tm, new java.security.SecureRandom());
+            System.setProperty ("jsse.enableSNIExtension", "false");
             //从上述SSLContext对象中得到SSLSocketFactory对象
             SSLSocketFactory ssf = sslContext.getSocketFactory();
 
@@ -85,7 +86,6 @@ public class HttpKit {
             while ((str = bufferedReader.readLine()) != null) {
                 buffer.append(str);
             }
-            System.out.println("哈哈哈： " + buffer.toString());
             //释放资源
             bufferedReader.close();
             inputStreamReader.close();

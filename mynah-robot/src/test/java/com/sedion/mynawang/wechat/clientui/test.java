@@ -1,6 +1,6 @@
 package com.sedion.mynawang.wechat.clientui;
 
-import com.sedion.mynawang.wechat.wefun.UUIDServer;
+import com.sedion.mynawang.wechat.wefunc.UUIDServer;
 import org.junit.Test;
 
 /**
@@ -12,7 +12,7 @@ public class test {
     @Test
     public void getUUid() {
         UUIDServer uuidServer = new UUIDServer();
-        System.out.println(uuidServer.getUUID2());
+        System.out.println(uuidServer.getUUID());
     }
 
 }

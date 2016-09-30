@@ -13,7 +13,7 @@ public class UuidParams {
 
     private String lang;
 
-    private int timestamp_;
+    private long timestamp_;
 
     public String getAppid() {
         return appid;
@@ -39,11 +39,11 @@ public class UuidParams {
         this.lang = lang;
     }
 
-    public int getTimestamp_() {
+    public long getTimestamp_() {
         return timestamp_;
     }
 
-    public void setTimestamp_(int timestamp_) {
+    public void setTimestamp_(long timestamp_) {
         this.timestamp_ = timestamp_;
     }
 
