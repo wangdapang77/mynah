@@ -1,0 +1,55 @@
+
+
+<table id="list_table" class="table table-hover table-condensed table-striped" data-mobile-responsive="true" data-height="250" data-striped="true" data-url="js/demo/table_base.json" data-classes="table table-hover table-condensed" data-toggle="table">
+    <thead>
+    <tr>
+        <th>编号</th>
+        <th>用户姓名</th>
+        <th>手机号</th>
+        <th>可用工资</th>
+        <th>注册时间</th>
+        <th>状态</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr type="button"  data-toggle="modal" data-target="#1tan">
+        <td>1</td>
+        <td>王茜</td>
+        <td>18267853511</td>
+        <td>100</td>
+        <td>2016-10-08 19:15:07</td>
+        <td>
+            状态正常
+       </td>
+    </tr>
+    </tbody>
+</table>
+<div id="kkpager"></div>
+<link rel="stylesheet" type="text/css" href="/js/mbrpc/pagination/kkpager_green.css"/>
+<script src="/js/mbrpc/jquery.min.js?v=2.1.4"></script>
+<script src="/js/mbrpc/pagination/kkpager.min.js"></script>
+<script src="/js/mbrpc/plugins/peity/jquery.peity.min.js"></script>
+<script src="/js/mbrpc/demo/peity-demo.min.js"></script>
+#*<script>
+    $(function () {
+        var res = "&condition=" + '1' + " &inquireText=" + '2';
+        kkpager.generPageHtml({
+            pno: '1',
+            //总页码
+            total: '2',
+            //总数据条数
+            totalRecords: '1',
+            mode: 'click',//默认值是link，可选link或者click
+            click: function (n) {
+                // do something
+                //手动选中按钮
+                this.selectPage(n);
+                $.get("/adm/user/list?num=" + n + res,
+                        function (data) {
+                            $("#list_div").html(data);
+                        });
+                return false;
+            }
+        });
+    });
+</script>*#

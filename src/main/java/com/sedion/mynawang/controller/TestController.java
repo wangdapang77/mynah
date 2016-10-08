@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(value = "/test")
 public class TestController {
 
-
     @RequestMapping(value = "")
     @ResponseBody
     public String test() {
@@ -24,6 +23,14 @@ public class TestController {
     public ModelAndView getQr() {
         System.out.println("123123");
         ModelAndView mav = new ModelAndView("test");
+        mav.addObject("qrpath", "http://avatar.csdn.net/D/3/2/1_naruto_ahu.jpg");
         return mav;
     }
+
+
+    @RequestMapping(value = "/test1")
+    public String test2s() {
+        return "test";
+    }
+
 }

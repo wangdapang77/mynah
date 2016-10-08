@@ -1,0 +1,121 @@
+#kkpager{
+	clear:both;
+	color:#0ab277;
+	padding:5px 0px 5px 0px;
+	font-size:13px;
+}
+#kkpager a{
+	float: left;
+	border: 1px solid #ccc;
+	display: inline;
+	padding: 3px 10px 3px 10px;
+	margin-right: 5px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	cursor: pointer;
+	background: #fff;
+	text-decoration:none;
+	color:#0ab277;
+}
+
+#kkpager span.disabled{
+	float: left;
+	display: inline;
+	padding: 3px 10px 3px 10px;
+	margin-right: 5px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border:1px solid #DFDFDF;
+	background-color:#fff;
+	color:#DFDFDF;
+}
+#kkpager span.curr{
+	float: left;
+	border: 1px solid #31ACE2;
+	display: inline;
+	padding: 3px 10px 3px 10px;
+	margin-right: 5px;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	background: #d9f7ec;
+	color: #0ab277;
+}
+#kkpager a:hover{
+	border:1px solid #fff; 
+	background-color:#0ab277; 
+	color:#fff;
+}
+#kkpager span.normalsize{
+}
+#kkpager_gopage_wrap{
+	position:relative;
+	left:0px;
+	top:0px;
+}
+#kkpager_btn_go {
+	width:44px;
+	height:22px;
+	border:0px;
+	overflow:hidden;
+	line-height:140%;
+	padding:0px;
+	margin:0px;
+	text-align:center;
+	cursor:pointer;
+	background-color:#0ab277;
+	color:#fff;
+	position:absolute;
+	left:0px;
+	top:-2px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	display:none;
+}
+#kkpager_btn_go_input{
+	width:36px;
+	height:17px;
+	line-height:17px;
+	font-size:12px;
+	color:#0ab277;
+	text-align:center;
+	margin-left:1px;
+	margin-right:1px;
+	border:1px solid #DFDFDF;
+	position:relative;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	left:0px;
+	top:0px;
+	outline:none;
+}
+
+#kkpager_btn_go_input.focus{
+	border-color:#DFDFDF;
+}
+
+#kkpager .pageBtnWrap{
+	float:right;
+}
+#kkpager .infoTextAndGoPageBtnWrap{
+	float:left;
+	font-size: 12px;
+
+}
+#kkpager .spanDot{
+	float:left;
+	margin-right:5px;
+}
+
+#kkpager .currPageNum{
+	color:#0ab277;
+}
+
+#kkpager .infoTextAndGoPageBtnWrap{
+	padding-top:5px;
+	color: #999999;
+}
+
+.goPageBox{font-size: 1em}

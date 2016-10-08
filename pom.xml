@@ -26,6 +26,9 @@
     <mybatis-spring.version>1.2.2</mybatis-spring.version>
     <mysql.version>5.1.31</mysql.version>
     <druid.version>1.0.6</druid.version>
+    <velocity.version>1.7</velocity.version>
+    <velocity-tools.version>2.0</velocity-tools.version>
+    <jstl.version>1.2</jstl.version>
   </properties>
 
   <dependencies>
@@ -85,12 +88,6 @@
       <version>${springframework.version}</version>
     </dependency>
 
-    <dependency>
-      <groupId>org.freemarker</groupId>
-      <artifactId>freemarker</artifactId>
-      <version>${freemarker.version}</version>
-    </dependency>
-
     <!-- jackson(spring4有依赖) -->
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -135,6 +132,31 @@
       <groupId>com.alibaba</groupId>
       <artifactId>druid</artifactId>
       <version>${druid.version}</version>
+    </dependency>
+
+    <!-- velocity模版引擎 -->
+    <dependency>
+      <groupId>org.apache.velocity</groupId>
+      <artifactId>velocity</artifactId>
+      <version>${velocity.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.velocity</groupId>
+      <artifactId>velocity-tools</artifactId>
+      <version>${velocity-tools.version}</version>
+    </dependency>
+
+    <!-- freemarker模版引擎 -->
+    <dependency>
+      <groupId>org.freemarker</groupId>
+      <artifactId>freemarker</artifactId>
+      <version>${freemarker.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>jstl</groupId>
+      <artifactId>jstl</artifactId>
+      <version>${jstl.version}</version>
     </dependency>
 
   </dependencies>

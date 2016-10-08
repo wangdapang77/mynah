@@ -1,0 +1,67 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <link href="/css/mbrpc/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+    <div class="nav-close"><i class="fa fa-times-circle"></i>
+    </div>
+    <div class="sidebar-collapse">
+        <ul class="nav" id="side-menu">
+
+            <li class="nav-header">
+                <div class="dropdown profile-element" align="center" style="margin-right: 10px">
+                    <span><img alt="image" src="/img/mbrpc/headimg.png" width="60px"/></span> <!--  class="img-circle"  -->
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                        <span class="clear">
+                            <span class="block m-t-xs"><strong class="font-bold">${admin_name}</strong></span>
+                            <span class="text-muted text-xs block">超级管理员<b class="caret"></b></span>
+                        </span>
+                    </a>
+                    <ul id="slide" class="dropdown-menu animated fadeInDown m-t-xs">
+                        <li><a class="J_menuItem" href="/adm/index/changeindex">修改密码</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/adm/index/logout">安全退出</a> </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-home"></i>
+                    <span class="nav-label">关于系统</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a class="J_menuItem" href="/mbr/accs/list.account" data-index="0">帐号列表</a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem"
+                           href="/adm/index/filter?filter=/user/checklist&method=/adm/user/checklist">身份审核</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa fa-bar-chart-o"></i>
+                    <span class="nav-label">关于工资</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a class="J_menuItem"
+                           href="/adm/index/filter?filter=/wages/wagesApply&method=/adm/wages/wagesApply?condition=phone">工资申请记录</a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem"
+                           href="/adm/index/filter?filter=/wages/wagesApplyHistory&method=/adm/wages/wagesApplyHistory">历史申请记录</a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem"
+                           href="/adm/index/filter?filter=/wages/wagesSource&method=/adm/wages/wagesSource">发放工资记录</a>
+                    </li>
+                    <li>
+                        <a class="J_menuItem"
+                           href="/adm/index/filter?filter=/wages/wagesDetaillist&method=/adm/wages/wagesDetaillist">工资来源明细</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
