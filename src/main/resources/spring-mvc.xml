@@ -11,25 +11,15 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-	<!-- 自动扫描controller包下的所有类，使其认为spring mvc的控制器 -->
-	<context:component-scan base-package="com.sedion.mynawang.controller" >
-		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
-	</context:component-scan>
-
-	<mvc:default-servlet-handler/>
-
 	<mvc:annotation-driven>
 		<!--responseBody中文乱码解决 -->
 		<mvc:message-converters register-defaults="true">
 			<bean class="com.sedion.mynawang.util.UTF8StringHttpMessageConverter" />
 		</mvc:message-converters>
 	</mvc:annotation-driven>
-
-
-
-
-
-	
+	<mvc:default-servlet-handler/>
+	<!-- 自动扫描controller包下的所有类，使其认为spring mvc的控制器 -->
+	<context:component-scan base-package="com.sedion.mynawang.controller" />
 
 	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
 
@@ -91,6 +81,10 @@
 		</property>
 		<property name="freemarkerSettings" ref="freemarkerConfiguration">
 		</property>
+	</bean>
+
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages"/>
 	</bean>
 
 	<!-- 定义JSP -->

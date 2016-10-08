@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class TestController {
 
 
+    @RequestMapping(value = "")
     @ResponseBody
     public String test() {
         return "123";

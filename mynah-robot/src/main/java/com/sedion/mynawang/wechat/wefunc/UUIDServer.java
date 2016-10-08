@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 获取uuid
- *
  * @auther mynawang
  * @create 2016-09-29 19:40
  */

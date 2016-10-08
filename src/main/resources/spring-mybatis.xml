@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+	<!-- 引入配置文件 -->
+	<bean id="propertyConfigurer"
+		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location" value="classpath:properties/dbConfig.properties" />
+	</bean>
+
+	<!-- 配置数据源 -->
+	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<property name="url" value="${db_url}" />
+		<property name="username" value="${db_user}" />
+		<property name="password" value="${db_password}" />
+		<!-- 初始化连接大小 -->
+		<property name="initialSize" value="0" />
+		<!-- 连接池最大使用连接数量 -->
+		<property name="maxActive" value="20" />
+		<!-- 连接池最大空闲  @温少[DruidAbstractDataSource] maxIdle is deprecated 报错注释-->
+		<!-- <property name="maxIdle" value="20" /> -->
+		<!-- 连接池最小空闲 -->
+		<property name="minIdle" value="0" />
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait" value="60000" />
+
+		<!-- 连接长期不使用时，连接池会自动从数据库中断开该连接，
+			等再次使用时再尝试连接，这个语句就是在断开重连时做检测的 -->
+		<property name="validationQuery" value="${validationQuery}" />
+		<!-- 在进行borrowObject进行处理时，对拿到的connection进行validateObject校验 -->
+		<property name="testOnBorrow" value="false" />
+		<!-- 在进行returnObject对返回的connection进行validateObject校验 -->
+		<property name="testOnReturn" value="false" />
+
+		<property name="testWhileIdle" value="true" />
+
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="25200000" />
+		<!-- 打开removeAbandoned功能 -->
+		<property name="removeAbandoned" value="true" />
+		<!-- 连接泄漏的超时时间1800秒，也就是30分钟 -->
+		<property name="removeAbandonedTimeout" value="1800" />
+		<!-- 关闭abanded连接时输出错误日志 -->
+		<property name="logAbandoned" value="true" />
+		<!-- 监控数据库 -->
+		<!-- <property name="filters" value="stat" /> -->
+		<property name="filters" value="mergeStat" />
+
+		<!-- <property name="defaultAutoCommit" value="true"/> -->
+	</bean>
+	
+	<!-- <bean id="paginationInterceptor" class="com.xidian.wq.imao.interceptor.page.PaginationInterceptor"></bean> -->
+
+	<!-- myBatis文件 --><!-- 创建SqlSessionFactory，同时指定数据源 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- <property name="plugins" ref="paginationInterceptor"/> -->
+		<!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
+		<property name="mapperLocations" value="classpath:com/sedion/mynawang/model/mapping/*.xml" />
+	</bean>
+
+
+	<!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.xidian.wq.imao.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+		<!-- 事务拦截器bean需要依赖注入一个事务管理器 -->
+		<property name="transactionManager" ref="transactionManager" />
+		<property name="transactionAttributes">
+			<!-- 配置事务属性 -->
+			<props>
+				<!-- PROPAGATION_REQUIRED表示：在bean中所有以配置单词如get开头的方法，当抛出异常时自动回滚，并只读，其他异常自动回滚 -->
+				<!--  +/-Exception + 表示异常出现时事物提交 - 表示异常出现时事务回滚 -->
+				<!-- 事务处理，若无key匹配则默认为readOnly -->
+				<prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+				<prop key="update*">PROPAGATION_REQUIRED,ISOLATION_SERIALIZABLE,-Exception</prop>
+			</props>
+		</property>
+	</bean>
+	<aop:config>
+		<aop:pointcut id="transactionPointcut" expression="execution(* *..service..*.*(..))" /><!--   expression="execution(* *..service..*.*(..))"    "execution(* com.xidian.wq.imao.service.impl.*.*(..))"          Impl..*.*(..) -->
+		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionInterceptor" />
+	</aop:config>
+
+	<!-- 配置druid监控spring jdbc -->
+	<bean id="druid-stat-interceptor" class="com.alibaba.druid.support.spring.stat.DruidStatInterceptor">
+	</bean>
+	<bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut" scope="prototype">
+		<property name="patterns">
+			<list>
+				<value>com.xidian.wq.imao.service.*</value>
+			</list>
+		</property>
+	</bean>
+	<aop:config>
+		<aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />
+	</aop:config>
+
+
+</beans>

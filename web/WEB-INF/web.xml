@@ -4,8 +4,6 @@
            xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
            version="3.0">
-
-
     <display-name>mynah</display-name>
 
     <!-- 对客户端请求的静态资源如图片、JS文件等的请求交由默认的servlet进行处理。目的：可以正常访问静态文件，不可以找不到静态文件报404。 -->
@@ -34,6 +32,7 @@
         <url-pattern>*.css</url-pattern>
     </servlet-mapping>
 
+
     <!-- 以下3项参数与log4j的配置相关 -->
     <context-param>
         <param-name>log4jConfigLocation</param-name>
@@ -57,24 +56,8 @@
     <!-- Spring 服务层的配置文件 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:spring-mvc.xml</param-value>
+        <param-value>classpath:spring-mybatis.xml</param-value>
     </context-param>
-
-    <!-- Spring MVC Servlet 由SpringMVC拦截所有请求-->
-    <servlet>
-        <servlet-name>mynah</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:spring-mvc.xml</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>mynah</servlet-name>
-        <url-pattern>/*</url-pattern>
-    </servlet-mapping>
-
     <!-- Spring字符编码过滤器 -->
     <filter>
         <filter-name>encodingFilter</filter-name>
@@ -94,5 +77,31 @@
         <filter-name>encodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <!-- Spring MVC Servlet 由SpringMVC拦截所有请求-->
+    <servlet>
+        <servlet-name>mynah</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <init-param>
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring-mvc.xml</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+        <async-supported>true</async-supported>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mynah</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DruidStatView</servlet-name>
+        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DruidStatView</servlet-name>
+        <url-pattern>/druid/*</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

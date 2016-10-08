@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sedion.mynawang.model.dao.ArticleTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.sedion.mynawang.model.ArticleType" >
+    <id column="articletype_id" property="articletypeId" jdbcType="INTEGER" />
+    <result column="articletype_name" property="articletypeName" jdbcType="VARCHAR" />
+    <result column="articletyle_level" property="articletyleLevel" jdbcType="INTEGER" />
+    <result column="up_articletype_id" property="upArticletypeId" jdbcType="INTEGER" />
+    <result column="articletype_remark" property="articletypeRemark" jdbcType="VARCHAR" />
+    <result column="add_people" property="addPeople" jdbcType="VARCHAR" />
+    <result column="add_date" property="addDate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    articletype_id, articletype_name, articletyle_level, up_articletype_id, articletype_remark, 
+    add_people, add_date
+  </sql>
+
+  <!--*****************************************build by Cherry-Chen*****************************************-->
+  <select id="getAll" resultMap="BaseResultMap">
+  	SELECT
+  		* 
+  	FROM 
+  		article_type
+	WHERE 
+		up_articletype_id != 0
+	ORDER BY 
+		up_articletype_id, articletype_id
+  </select>
+  <select id="getByUpType" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	SELECT
+  		<include refid="Base_Column_List" />
+  	FROM 
+  		article_type
+  	WHERE
+  		up_articletype_id = (SELECT articletype_id FROM article_type WHERE articletype_name = #{upTypeName,jdbcType=VARCHAR})
+  	ORDER BY 
+  		articletype_id
+  </select>
+  <select id="getByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	SELECT 
+  		* 
+  	FROM 
+  		article_type
+  	WHERE 
+  		articletype_name = #{typeName,jdbcType=VARCHAR}
+  </select>
+</mapper>
