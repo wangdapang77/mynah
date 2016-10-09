@@ -10,6 +10,7 @@
   <modules>
     <module>mynah-robot</module>
     <module>mynah-common</module>
+    <module>mynah-upload</module>
   </modules>
 
   <name>mynah</name>
@@ -29,6 +30,7 @@
     <velocity.version>1.7</velocity.version>
     <velocity-tools.version>2.0</velocity-tools.version>
     <jstl.version>1.2</jstl.version>
+    <fastjson.version>1.2.1</fastjson.version>
   </properties>
 
   <dependencies>
@@ -157,6 +159,14 @@
       <groupId>jstl</groupId>
       <artifactId>jstl</artifactId>
       <version>${jstl.version}</version>
+    </dependency>
+
+
+
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>${fastjson.version}</version>
     </dependency>
 
   </dependencies>

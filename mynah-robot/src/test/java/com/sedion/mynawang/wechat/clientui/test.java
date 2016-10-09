@@ -1,5 +1,6 @@
 package com.sedion.mynawang.wechat.clientui;
 
+import com.sedion.mynawang.wechat.wefunc.GenerQRCode;
 import com.sedion.mynawang.wechat.wefunc.UUIDServer;
 import org.junit.Test;
 
@@ -15,4 +16,10 @@ public class test {
         System.out.println(uuidServer.getUUID());
     }
 
+    @Test
+    public void getQrCode() {
+        UUIDServer uuidServer = new UUIDServer();
+        GenerQRCode generQRCode = new GenerQRCode();
+        generQRCode.getQRCode(uuidServer.getUUID(), "test.jpg");
+    }
 }
