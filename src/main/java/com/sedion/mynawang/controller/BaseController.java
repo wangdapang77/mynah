@@ -14,4 +14,10 @@ public class BaseController {
         /*return JSON.toJSONString(new SucResp("000000", "success_resp", object));*/
     }
 
+    protected String failRet(String ret, String msg, Object object) {
+        String sucRet = "{\"ret\":\"" + ret + "\",\"fail_msg\":\"" + msg  + "\",\"object_msg\":" + JSON.toJSONString(object) + "}";
+        return sucRet;
+        /*return JSON.toJSONString(new SucResp("000000", "success_resp", object));*/
+    }
+
 }

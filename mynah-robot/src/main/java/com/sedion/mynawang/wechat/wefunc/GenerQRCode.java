@@ -1,7 +1,7 @@
 package com.sedion.mynawang.wechat.wefunc;
 
 import com.sedion.mynawang.common.http.HttpKit;
-import com.sedion.mynawang.wechat.Constant.BaseCons;
+import com.sedion.mynawang.wechat.Constant.WechatBaseCons;
 import com.sedion.mynawang.wechat.Constant.WechatUrlCons;
 import com.sedion.mynawang.wechat.model.QrCodeParams;
 
@@ -19,7 +19,7 @@ public class GenerQRCode {
         String url = WechatUrlCons.WECHAT_QRCODE_URL + wechatUuid;
         final File output = new File(filePath);
         QrCodeParams qrCodeParams = new QrCodeParams();
-        qrCodeParams.setParams_t(BaseCons.QR_CODE_PARAM2);
+        qrCodeParams.setParams_t(WechatBaseCons.QR_CODE_PARAM2);
         qrCodeParams.setTimestamp_(System.currentTimeMillis());
         HttpKit.httpRequestToFile(url + qrCodeParams.toUrlParam(), "POST", null, output);
         if (null != output && output.exists() && output.isFile()) {

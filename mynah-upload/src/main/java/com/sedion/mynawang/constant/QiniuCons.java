@@ -10,4 +10,7 @@ public class QiniuCons {
     public final static  String ACCESS_KEY = "CZfBz-p53W3zjcsAsq4V1gjIrRWIc5RoXvALibcS";
     public final static  String SECRET_KEY = "B5_uYp4ClDW8yIH3qfaKwaupsvdPlf5LTMTpth_I";
     public final static  String BUCKET_NAME = "mynah";
+
+    public final static String QINIU_OUT_URL = "http://oeru0vigk.bkt.clouddn.com/";
+
 }

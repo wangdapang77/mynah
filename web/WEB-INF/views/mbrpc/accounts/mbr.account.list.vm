@@ -31,7 +31,7 @@
     </table>
 </div>
 
-<div class="modal inmodal fade" id="myModal6" tabindex="-1" role="dialog"  aria-hidden="true">
+<div class="modal inmodal fade" id="myModal6" tabindex="-1" role="dialog"  aria-hidden="true" >
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
@@ -39,7 +39,7 @@
                 <h4 class="modal-title">微信</h4>
             </div>
             <div class="modal-body">
-                <p><img id="qrCodeImg" src=""></p>
+                <p><img id="qrCodeImg" style="width: 240px;" src=""></p>
             </div>
             <div class="modal-footer">
                 <P><center>请使用微信扫一扫登录</center></P>
@@ -92,6 +92,8 @@
     function qrCallback(data) {
         if (data.ret == "000000") {
             $("#qrCodeImg").attr("src", data.object_msg.qrUrl);
+        } else {
+            alert(data.fail_msg);
         }
     }
 </script>

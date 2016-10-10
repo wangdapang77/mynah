@@ -4,13 +4,6 @@
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
-
-	<!-- 引入配置文件 -->
-	<bean id="propertyConfigurer"
-		  class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="classpath:properties/dbConfig.properties" />
-	</bean>
-
 	<!-- 配置数据源 -->
 	<bean name="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
 		<property name="url" value="${db_url}" />
@@ -67,7 +60,7 @@
 
 	<!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.xidian.wq.imao.dao" />
+		<property name="basePackage" value="com.sedion.mynawang.model.dao" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 
@@ -101,7 +94,7 @@
 	<bean id="druid-stat-pointcut" class="org.springframework.aop.support.JdkRegexpMethodPointcut" scope="prototype">
 		<property name="patterns">
 			<list>
-				<value>com.xidian.wq.imao.service.*</value>
+				<value>com.sedion.mynawang.service.*</value>
 			</list>
 		</property>
 	</bean>

@@ -2,7 +2,7 @@ package com.sedion.mynawang.wechat.wefunc;
 
 import com.sedion.mynawang.common.http.HttpKit;
 import com.sedion.mynawang.common.util.StringUtil;
-import com.sedion.mynawang.wechat.Constant.BaseCons;
+import com.sedion.mynawang.wechat.Constant.WechatBaseCons;
 import com.sedion.mynawang.wechat.Constant.WechatUrlCons;
 import com.sedion.mynawang.wechat.exception.WechatException;
 import com.sedion.mynawang.wechat.model.UuidParams;
@@ -22,10 +22,10 @@ public class UUIDServer {
         uuidParams.setLang("zh_CN");
         uuidParams.setTimestamp_(System.currentTimeMillis());
         String loginUuid = HttpKit.httpRequestToStr(
-                WechatUrlCons.getWechatJsLoginUrl() + uuidParams.toUrlParam(), "GET", null);
+                WechatUrlCons.WECHAT_JS_LOGIN_URL + uuidParams.toUrlParam(), "GET", null);
         if (!StringUtil.isEmpty(loginUuid)) {
             String loginCode = Matchers.match("window.QRLogin.code = (\\d+);", loginUuid);
-            if (BaseCons.WINDOWS_QRLOGIN_CODE_SUCCESS.equals(loginCode)) {
+            if (WechatBaseCons.WINDOWS_QRLOGIN_CODE_SUCCESS.equals(loginCode)) {
                 return Matchers.match("window.QRLogin.uuid = \"(.*)\";", loginUuid);
             } else {
                 throw new WechatException("错误的状态码: " + loginCode);
