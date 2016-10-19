@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	">
+
+	<!-- 注解支持 -->
+    <context:annotation-config />
+    <!-- 启动组件扫描，排除@Controller组件，该组件由SpringMVC配置文件扫描  .service-->
+    <context:component-scan base-package="com.sedion.mynawang">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+
+    <import resource="classpath:applicationContext-service.xml"/>
+
+</beans>

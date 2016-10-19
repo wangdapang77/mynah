@@ -8,9 +8,18 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>mynah-robot</module>
-    <module>mynah-common</module>
-    <module>mynah-upload</module>
+    <!-- 微信对接功能api -->
+    <module>mynah-wechat-robot</module>
+    <!-- 基础核心包（工具等） -->
+    <module>mynah-common-core</module>
+    <!-- 用户后台 -->
+    <module>mynah-web-member</module>
+    <!-- mvc分离service -->
+    <module>mynah-service</module>
+    <!-- mvc分离service实现 -->
+    <module>mynah-service-impl</module>
+    <!-- mvc分离dao -->
+    <module>mynah-model-dao</module>
   </modules>
 
   <name>mynah</name>
